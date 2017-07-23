@@ -1,11 +1,14 @@
 import React from 'react';
 import {Grid, Row, Col, Navbar} from 'react-bootstrap';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
+
 
 import styles from './HomePage.scss';
 import withStyles from '../../decorators/withStyles';
 import TweetTag from '../TweetTag';
+import {fetchLatestTweets} from '../../../../actions/tweetActions';
+import Loader from '../Loader';
 
 var data = [{
   "name": "#JLSarahOnGGV",
@@ -83,11 +86,24 @@ var data = [{
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillMount() {
+    this.props.fetchLatestTweets();
+  }
+
+  componentDidMount() {
+    this.setState({
+      loading: false
+    });
   }
 
   render() {
     return (
-      <div className="container">
+      this.state.loading ? <Loader /> : <div className="container">
         <Navbar className="navbar_container">
           <Navbar.Header>
             <Navbar.Brand className="navbar_header">
@@ -104,7 +120,8 @@ class HomePage extends React.Component {
           <div className="trendingContainer col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
             <h1>{'#Trending on Twitter'}</h1>
             <div className="trendingTagContainer">
-              {data.map((data) => <TweetTag data={data}/>)}
+              {this.props.tweets[0].trends.slice(0, 10).map((data, index) =>
+                <TweetTag key={index} data={data}/>)}
             </div>
           </div>
         </div>
@@ -113,4 +130,12 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = ({ tweetsState }) => {
+  return {
+    tweets: tweetsState.tweets
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchLatestTweets
+})(withRouter(HomePage));

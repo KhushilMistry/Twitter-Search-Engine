@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 
 import withStyles from './decorators/withStyles';
 import styles from './app.scss';
+import {fetchLatestTweets, fetchSearchTweets} from '../../actions/tweetActions';
 
 import Bootstrap from '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
@@ -16,7 +18,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app_container">
-        {React.cloneElement(this.props.children)}
+        {React.cloneElement(this.props.children, {
+          fetchLatestTweets: this.fetchLatestTweets,
+          fetchSearchTweets: this.fetchSearchTweets
+        })}
       </div>
     );
   }
@@ -31,4 +36,14 @@ class App extends React.Component {
 //   };
 // };
 
-export default App;
+const mapStateToProps = ({ tweetsState }) => {
+  return {
+    tweets: tweetsState.tweets,
+    loading: tweetsState.loading
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchLatestTweets
+})(withRouter(App));
+
