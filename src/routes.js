@@ -1,6 +1,6 @@
 import App from './app/app';
 import HomePage from './app/components/HomePage';
-import Loader from './app/components/Loader';
+import TweetSearchPage from './app/components/TweetSearchPage';
 
 const routes = {
   // base component (wrapper for the whole application).

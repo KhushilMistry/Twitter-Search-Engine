@@ -44,6 +44,7 @@ const mapStateToProps = ({ tweetsState }) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchLatestTweets
+  fetchLatestTweets,
+  fetchSearchTweets
 })(withRouter(App));
 

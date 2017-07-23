@@ -8,10 +8,11 @@ export default {
     });
   },
   fetchSearchTweets: function (query) {
+    console.log(query);
     return axios({
       method: 'post',
       url: 'http://localhost:3000/v1/tweets',
-      params: query
+      data: query
     });
   }
 };
