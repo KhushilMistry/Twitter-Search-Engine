@@ -1,5 +1,5 @@
 Run the backend server
-1. Clone `kitabikeedeBackend`
+1. Clone `Twitter-Search-App`
 2. Go to the source folder
 3. Do `npm install`
 4. do `nodemon index.js`

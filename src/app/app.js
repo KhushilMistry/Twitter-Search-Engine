@@ -1,28 +1,34 @@
-const header = [
-  {
-    title: 'Mobile',
-    dataIndex: 'mobile',
-    width: 105,
-    cellRenderer: SwitchButton
-    //this will be a renderer (a statesless component or a function) where you are using this component
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    width: 140,
-    cellRenderer: TextRenderer
-    //this will be a renderer where you are using this component
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    cellRenderer: TextRenderer
-    //this will be a renderer where you are using this component
-  },
-  {
-    title: 'Sex',
-    dataIndex: 'sex',
-    cellRenderer: AnotherRenderer
-    //this will be a renderer where you are using this component
-  },
-];
+import React from 'react';
+import {connect} from 'react-redux';
+
+import withStyles from './decorators/withStyles';
+import styles from './app.scss';
+
+import Bootstrap from '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+@withStyles(styles)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
+  render() {
+    return (
+      <div className="app_container">
+        {React.cloneElement(this.props.children)}
+      </div>
+    );
+  }
+}
+
+
+// const mapStateToProps = ({ coursesState }) => {
+//   return {
+//     courses: coursesState.courses,
+//     loading: coursesState.loading,
+//     query : coursesState.query
+//   };
+// };
+
+export default App;

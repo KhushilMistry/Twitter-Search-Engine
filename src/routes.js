@@ -12,28 +12,19 @@ const routes = {
     {
       path: '/',
       getComponent: (location, callback) => {
-        if (Auth.isUserAuthenticated()) {
-          callback(null, DashboardPage);
-        } else {
-          callback(null, HomePage);
-        }
+        callback(null, HomePage);
       }
     },
     {
-      path: '/login',
+      path: '/tweets',
       getComponent: (location, callback) => {
-        if (Auth.isUserAuthenticated()) {
-          callback(null, DashboardPage);
-        } else {
-          callback(null, LoginPage);
-        }
+        callback(null, TweetSearchPage);
       }
     },
     {
-      path: '/logout',
-      onEnter: (nextState, replace) => {
-        Auth.deauthenticateUser();
-        replace('/');
+      path: '/tweets/:id',
+      getComponent: (location, callback) => {
+        callback(null, TweetDisplayPage);
       }
     }
 
