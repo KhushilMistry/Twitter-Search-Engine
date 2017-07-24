@@ -17,7 +17,7 @@ class HomePage extends React.Component {
     super(props);
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchLatestTweets();
   };
 
@@ -52,7 +52,7 @@ class HomePage extends React.Component {
           <div className="trendingContainer col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
             <h1>{'#Trending on Twitter'}</h1>
             <div className="trendingTagContainer">
-              {this.props.tweets[0].trends.slice(0, 10).map((data, index) =>
+              {this.props.latest[0].trends.slice(0, 10).map((data, index) =>
                 <TweetTag key={index} data={data}/>)}
             </div>
           </div>
@@ -64,7 +64,7 @@ class HomePage extends React.Component {
 
 const mapStateToProps = ({ tweetsState }) => {
   return {
-    tweets: tweetsState.tweets,
+    latest: tweetsState.latest,
     loading: tweetsState.loading
   };
 };

@@ -14,7 +14,7 @@ export default function (state = INITIAL_STATE, action) {
       break;
     case 'LATEST_TWEETS_LOADED':
       appState.loading = false;
-      appState.tweets = action.data;
+      appState.latest = action.data;
       //console.log(action.data);
       break;
     case 'SEARCH_TWEETS_LOADED':
