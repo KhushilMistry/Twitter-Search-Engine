@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-
+import FaTwitter from 'react-icons/lib/fa/twitter';
+import FaHeartO from 'react-icons/lib/fa/heart-o';
 
 import styles from './TweetDisplayPage.scss';
 import withStyles from '../../decorators/withStyles';
 import {fetchLatestTweets, fetchSearchTweets} from '../../../../actions/tweetActions';
 import Loader from '../Loader';
+import TwitterBar from '../TwitterBar';
 
 @withStyles(styles)
 class TweetDisplayPage extends React.Component {
@@ -29,6 +31,7 @@ class TweetDisplayPage extends React.Component {
     return (
       this.props.loading ? <Loader /> :
         <div className="twitter-Display-container">
+          <TwitterBar />
           <div className="row">
             <div className="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1 tweet-tile-container">
               <div className="row">
@@ -48,19 +51,25 @@ class TweetDisplayPage extends React.Component {
               </div>
               <div className="row">
                 <div className="col-sm-12">
-                  {data[0].entities.media ? <img src={data[0].entities.media[0].media_url_https} className="twitter-tile-image"/> : null}
+                  {data[0].entities.media ?
+                    <img src={data[0].entities.media[0].media_url_https} className="twitter-tile-image"/> : null}
                 </div>
               </div>
               <div className="row twitter-icon-container">
                 <div className="col-sm-2">
-                  <p>{data[0].retweeted_status ? data[0].retweeted_status.favorite_count : 0}</p>
+                  <p><FaHeartO
+                    className="heart-icon"/>{' '}{data[0].retweeted_status ? data[0].retweeted_status.favorite_count : 0}
+                  </p>
                 </div>
                 <div className="col-sm-2">
-                  <p>{data[0].retweeted_status ? data[0].retweeted_status.retweet_count : 0}</p>
+                  <p><FaTwitter
+                    className="twitter-icon"/>{' '}{data[0].retweeted_status ? data[0].retweeted_status.retweet_count : 0}
+                  </p>
                 </div>
                 <div className="col-sm-2">
                   <p>{data[0].entities.media ?
-                    <a href={data[0].entities.media[0].url} target="_blank">Open</a> : null}</p>
+                    <a className="twitter-display-link" href={data[0].entities.media[0].url}
+                      target="_blank">Open</a> : null}</p>
                 </div>
               </div>
             </div>

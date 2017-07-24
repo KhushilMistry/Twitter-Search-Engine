@@ -8,6 +8,7 @@ import withStyles from '../../decorators/withStyles';
 import {fetchLatestTweets, fetchSearchTweets} from '../../../../actions/tweetActions';
 import Loader from '../Loader';
 import TweetTile from '../TweetTile';
+import TwitterBar from '../TwitterBar';
 
 @withStyles(styles)
 class TweetSearchPage extends React.Component {
@@ -20,6 +21,7 @@ class TweetSearchPage extends React.Component {
     return (
       this.props.loading ? <Loader /> :
         <div className="twitter-search-container">
+          <TwitterBar />
           {this.props.tweets.statuses.map((data, index) =>
             <TweetTile key={index} data={data}/>)}
         </div>
