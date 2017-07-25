@@ -1,6 +1,8 @@
 .tweeter-navbar-container {
+  position: fixed;
   background-color: white;
   width: 100%;
+  z-index: 100;
 }
 
 .tweeter-navbar-title {
