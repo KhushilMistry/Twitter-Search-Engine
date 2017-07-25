@@ -19,7 +19,8 @@ class TwitterBar extends React.Component {
       <div className="tweeter-query-container">
         <div className="row">
           <div className="col-sm-offset-1 col-sm-6">
-            <p className="tweeter-query-heading">{this.props.query.search}</p>
+            <p className="tweeter-query-heading"><span
+              className="tweeter-secondary-heading">{'Searched Word '}</span>{this.props.query.search}</p>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import withStyles from '../../decorators/withStyles';
 import {fetchLatestTweets, fetchSearchTweets} from '../../../../actions/tweetActions';
 import Loader from '../Loader';
 import TwitterBar from '../TwitterBar';
+import TweetNavbar from '../TweetNavbar';
 
 @withStyles(styles)
 class TweetDisplayPage extends React.Component {
@@ -31,6 +32,7 @@ class TweetDisplayPage extends React.Component {
     return (
       this.props.loading ? <Loader /> :
         <div className="twitter-Display-container">
+          <TweetNavbar fetchSearchTweets={this.props.fetchSearchTweets}/>
           <TwitterBar />
           <div className="row">
             <div className="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1 tweet-tile-container">
